@@ -51,7 +51,7 @@ public class NewsAdapter extends ArrayAdapter<News>{
             }
         };
 
-        Picasso.with(getContext()).load(news.getmImageURL()).into(image);
+        Picasso.with(getContext()).load(news.getmImageURL()).fit().centerCrop().into(image);
         title.setText(news.getmTitle());
         source.setText(news.getmSource());
         desc.setText(news.getmDesc());

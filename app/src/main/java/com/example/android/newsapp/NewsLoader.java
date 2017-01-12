@@ -16,8 +16,8 @@ import java.util.List;
  */
 
 public class NewsLoader extends AsyncTaskLoader<List<News>> {
-    private String mUrl;
-    public NewsLoader(Context context, String Url) {
+    private ArrayList<String> mUrl;
+    public NewsLoader(Context context, ArrayList<String> Url) {
         super(context);
         mUrl = Url;
     }
@@ -31,15 +31,18 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
     public List<News> loadInBackground() {
         Log.v("paras", "loadInBackground called");
         ArrayList<News> arr = new ArrayList<>();
-        try {
-            arr = QueryUtils.getNews(mUrl);
-        } catch (MalformedURLException e){
-            Log.e("Error: ", "Unable to make URL", e);
-        }
-        catch (IOException e) {
-            Log.e("Error: ", "Unable to connect to net", e);
-        } catch (JSONException e) {
-            Log.e("Error: ", "Json parsing error", e);
+        for(int i=0;i<mUrl.size();i++) {
+            try {
+                String source = QueryUtils.sourceArrayList.get(i).getmName();
+                arr.addAll(QueryUtils.getNews(mUrl.get(i), source));
+                Log.v("paras: ", "Done"+i);
+            } catch (MalformedURLException e) {
+                Log.e("Error: ", "Unable to make URL", e);
+            } catch (IOException e) {
+                Log.e("Error: ", "Unable to connect to net", e);
+            } catch (JSONException e) {
+                Log.e("Error: ", "Json parsing error", e);
+            }
         }
         return arr;
     }
