@@ -37,9 +37,9 @@ public class NewsAdapter extends ArrayAdapter<News>{
         ImageView image = (ImageView) convertView.findViewById(R.id.image);
         TextView title = (TextView) convertView.findViewById(R.id.title);
         TextView source = (TextView) convertView.findViewById(R.id.source);
-        TextView desc = (TextView) convertView.findViewById(R.id.desc);
+        final TextView desc = (TextView) convertView.findViewById(R.id.desc);
         final ImageView expand = (ImageView) convertView.findViewById(R.id.expand);
-        ImageView shrink = (ImageView) convertView.findViewById(R.id.shrink);
+        final ImageView shrink = (ImageView) convertView.findViewById(R.id.shrink);
         final RelativeLayout rl2 = (RelativeLayout) convertView.findViewById(R.id.rl2);
         View.OnClickListener click = new View.OnClickListener() {
             @Override
@@ -59,15 +59,18 @@ public class NewsAdapter extends ArrayAdapter<News>{
         expand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rl2.setVisibility(View.VISIBLE);
                 v.setVisibility(View.GONE);
+                desc.setVisibility(View.VISIBLE);
+                shrink.setVisibility(View.VISIBLE);
             }
         });
 
         shrink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rl2.setVisibility(View.GONE);
+                desc.setVisibility(View.GONE);
+                v.setVisibility(View.GONE);
+                //rl2.setVisibility(View.GONE);
                 expand.setVisibility(View.VISIBLE);
             }
         });
@@ -75,6 +78,11 @@ public class NewsAdapter extends ArrayAdapter<News>{
         title.setOnClickListener(click);
         image.setOnClickListener(click);
         desc.setOnClickListener(click);
+        source.setOnClickListener(click);
+        //rl2.setVisibility(View.GONE);
+        expand.setVisibility(View.VISIBLE);
+        desc.setVisibility(View.GONE);
+        shrink.setVisibility(View.GONE);
 
         return convertView;
     }

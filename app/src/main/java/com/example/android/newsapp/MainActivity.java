@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 ProgressBar pb = (ProgressBar) findViewById(R.id.pb);
                 pb.setVisibility(View.GONE);
                 TextView tx = (TextView) findViewById(R.id.error);
+                tx.setVisibility(View.VISIBLE);
                 tx.setText("Not connected to Internet");
             }
         } catch (JSONException e) {
