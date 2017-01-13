@@ -1,3 +1,3 @@
 # NewsApp
-Android app to show news using an API
+Android app to show news using an newsapi.org
 
